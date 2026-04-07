@@ -87,7 +87,6 @@ const faqSchema = guide.id === 'what-is-an-estate-sale' ? {
       <div class="share-buttons">
         <span class="share-label">Share this guide:</span>
         <a href={`https://www.facebook.com/sharer/sharer.php?u=https://estatesaletales.com/guides/${guide.id}`} target="_blank" rel="noopener" class="share-btn">Facebook</a>
-        <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(guide.data.title)}&url=https://estatesaletales.com/guides/${guide.id}`} target="_blank" rel="noopener" class="share-btn">Twitter</a>
         <a href={`mailto:?subject=${encodeURIComponent(guide.data.title)}&body=Check out this estate sale guide: https://estatesaletales.com/guides/${guide.id}`} class="share-btn">Email</a>
       </div>
 
