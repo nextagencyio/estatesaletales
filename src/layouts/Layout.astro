@@ -62,11 +62,8 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     <nav class="nav">
       <div class="container">
         <a href="/" class="nav-logo">
-          <span class="nav-logo-sign">
-            <span class="nav-logo-sign-text">EST</span>
-            <span class="nav-logo-sign-post"></span>
-          </span>
-          Estate Sale Tales
+          <span class="nav-logo-title">Estate Sale Tales</span>
+          <span class="nav-logo-author">by Susan Callicott</span>
         </a>
         <ul class="nav-links">
           <li><a href="/stories">Stories</a></li>
@@ -202,26 +199,18 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   }
   .nav .container { display: flex; align-items: center; justify-content: space-between; }
   .nav-logo {
-    display: flex; align-items: center; gap: 0.6rem;
-    font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700;
-    color: var(--text); text-decoration: none;
+    display: flex; flex-direction: column; text-decoration: none; line-height: 1;
   }
-  .nav-logo:hover { color: var(--accent); }
-  .nav-logo-sign {
-    display: flex; flex-direction: column; align-items: center; position: relative;
+  .nav-logo:hover .nav-logo-title { color: var(--accent); }
+  .nav-logo-title {
+    font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700;
+    color: var(--text); letter-spacing: -0.01em;
+    transition: color var(--transition);
   }
-  .nav-logo-sign-text {
-    display: flex; align-items: center; justify-content: center;
-    width: 30px; height: 22px;
-    background: var(--accent); color: white;
-    font-family: var(--font-sans); font-size: 0.55rem; font-weight: 800;
-    letter-spacing: 0.08em;
-    border-radius: 2px;
-  }
-  .nav-logo-sign-post {
-    width: 3px; height: 10px;
-    background: var(--text-muted);
-    border-radius: 0 0 1px 1px;
+  .nav-logo-author {
+    font-family: var(--font-serif); font-size: 0.72rem; font-weight: 400;
+    color: var(--text-muted); font-style: italic;
+    margin-top: 0.15rem;
   }
   .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
   .nav-links a {
