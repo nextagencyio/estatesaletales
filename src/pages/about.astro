@@ -22,6 +22,10 @@ const personSchema = {
       <p class="section-label">About</p>
       <h1 class="section-title">The Story Behind the Stories</h1>
 
+      <div class="author-photo-wrapper">
+        <img src="/author-photo.jpg" alt="Susan Callicott, author of Estate Sale Tales" class="author-photo" />
+      </div>
+
       <div class="prose-content">
         <h2>Meet Susan Callicott</h2>
         <p>
@@ -39,6 +43,11 @@ const personSchema = {
         <p>
           The book isn't a how-to guide for running estate sales (though we have some of those in our <a href="/guides">Guides section</a>). It's a collection of true stories that capture the full spectrum of what it's like to walk into someone else's home and help sort through a lifetime of belongings.
         </p>
+
+        <div style="text-align: center; margin: 2rem 0;">
+          <a href="/book"><img src="/book-cover-thumb.jpg" alt="Estate Sale Tales" style="width: 180px; border-radius: 8px; box-shadow: 0 4px 12px rgba(44,36,32,0.1);" /></a>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem;"><a href="/book">Get the book &rarr;</a></p>
+        </div>
 
         <h2>Contributors</h2>
         <p>
@@ -89,5 +98,15 @@ const personSchema = {
     color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 2px;
+  }
+  .author-photo-wrapper {
+    float: right;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+  .author-photo {
+    width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(44,36,32,0.1);
   }
 </style>

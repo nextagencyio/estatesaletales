@@ -23,7 +23,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f5f0eb" />
+    <meta name="theme-color" content="#a93232" />
     <meta name="author" content="Estate Sale Tales" />
     <link rel="canonical" href={canonicalUrl} />
 
@@ -54,7 +54,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
 
     <title>{title}</title>
   </head>
@@ -65,11 +65,14 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
           <span class="nav-logo-title">Estate Sale Tales</span>
           <span class="nav-logo-author">by Susan Callicott</span>
         </a>
-        <ul class="nav-links">
-          <li><a href="/stories">Stories</a></li>
-          <li><a href="/guides">Guides</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/book" class="nav-cta">Get the Book</a></li>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="/stories" class={Astro.url.pathname.startsWith('/stories') ? 'active' : ''}>Stories</a></li>
+          <li><a href="/guides" class={Astro.url.pathname.startsWith('/guides') ? 'active' : ''}>Guides</a></li>
+          <li><a href="/about" class={Astro.url.pathname === '/about' || Astro.url.pathname === '/about/' ? 'active' : ''}>About</a></li>
+          <li><a href="/book" class={`nav-cta ${Astro.url.pathname === '/book' || Astro.url.pathname === '/book/' ? 'nav-cta-active' : ''}`}>Get the Book</a></li>
         </ul>
       </div>
     </nav>
@@ -113,11 +116,22 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
       }
     </script>
 
+    <script>
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      if (toggle && links) {
+        toggle.addEventListener('click', () => {
+          links.classList.toggle('open');
+          toggle.classList.toggle('open');
+        });
+      }
+    </script>
+
     <footer class="footer">
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a href="/" class="footer-logo">Estate Sale Tales</a>
+            <a href="/" class="footer-logo">Estate Sale Tales<span class="footer-byline">by Susan Callicott</span></a>
             <p class="footer-tagline">True stories from 20 years of estate liquidation.</p>
           </div>
           <div class="footer-links-group">
@@ -151,20 +165,18 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
   :root {
-    --bg: #f6f9f5;
-    --bg-warm: #eaf0e8;
+    --bg: #faf7f2;
+    --bg-warm: #f3ede4;
     --bg-card: #ffffff;
-    --bg-accent: #e8f0e6;
-    --bg-hero: #5b8a4e;
-    --text: #2a3328;
-    --text-secondary: #546b50;
-    --text-muted: #7d917a;
+    --bg-accent: #f5efe6;
+    --text: #2c2420;
+    --text-secondary: #5e524a;
+    --text-muted: #8a7e76;
     --accent: #a93232;
     --accent-hover: #8f2a2a;
-    --accent-light: rgba(169, 50, 50, 0.1);
-    --sky: #4a8ec2;
-    --border: #d4ddd2;
-    --border-light: #e6ede4;
+    --accent-light: rgba(169, 50, 50, 0.08);
+    --border: #e0d6cc;
+    --border-light: #ece5dc;
     --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --container-max: 1100px;
@@ -193,7 +205,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   .nav {
     position: sticky; top: 0; z-index: 100;
     padding: 1rem 0;
-    background: rgba(246, 249, 245, 0.92);
+    background: rgba(250, 247, 242, 0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-light);
   }
@@ -223,10 +235,30 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     padding: 0.5rem 1.25rem; border-radius: var(--radius); font-weight: 600 !important;
   }
   .nav-cta:hover { background: var(--accent-hover) !important; }
+  .nav-links a.active { color: var(--text); font-weight: 600; }
+  .nav-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    flex-direction: column; gap: 4px; padding: 4px;
+  }
+  .nav-toggle span {
+    display: block; width: 22px; height: 2px; background: var(--text);
+    transition: all 0.2s ease; border-radius: 1px;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
   @media (max-width: 640px) {
-    .nav-links { gap: 1rem; }
-    .nav-links a { font-size: 0.8rem; }
-    .nav-cta { padding: 0.4rem 0.8rem; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0; padding: 0.75rem 1.5rem 1rem;
+      background: rgba(250, 247, 242, 0.98); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { padding: 0.5rem 0; }
+    .nav-links a { font-size: 0.95rem; }
+    .nav-cta { text-align: center; margin-top: 0.5rem; }
   }
 
   /* Section helpers */
@@ -251,7 +283,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     border: 1px solid var(--border-light); border-radius: var(--radius-lg);
     text-decoration: none; transition: box-shadow var(--transition), transform var(--transition);
   }
-  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--border); }
   .card-category {
     display: inline-block; font-size: 0.72rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.06em;
@@ -345,7 +377,8 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   /* Footer */
   .footer { padding: 4rem 0 2rem; background: var(--bg-warm); border-top: 1px solid var(--border); }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem; }
-  .footer-logo { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--text); }
+  .footer-logo { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--text); display: block; line-height: 1.2; }
+  .footer-byline { display: block; font-size: 0.75rem; font-weight: 400; color: var(--text-muted); font-style: italic; margin-top: 0.15rem; }
   .footer-tagline { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; }
   .footer-links-group h4 { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
   .footer-links-group ul { list-style: none; }

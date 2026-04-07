@@ -75,6 +75,7 @@ const featuredStories = featuredSlugs
     <div class="container about-teaser">
       <p class="section-label">About the Author</p>
       <h2 class="section-title">20 Years. 1,000+ Homes. Countless Stories.</h2>
+      <img src="/author-photo.jpg" alt="Susan Callicott" class="about-photo" />
       <p class="section-subtitle">
         Susan Callicott, founder of Lucy & Ethel Estate Sales in the Dallas/Fort Worth area, has spent over two decades clearing out homes and collecting the wildest stories along the way. What started as a career became a front-row seat to the strangest, funniest, and most human moments imaginable.
       </p>
@@ -86,7 +87,7 @@ const featuredStories = featuredSlugs
   <section class="section">
     <div class="container">
       <p class="section-label">Amazon Reviews</p>
-      <h2 class="section-title">4.8 Stars on Amazon</h2>
+      <h2 class="section-title">4.8 Stars on Amazon (8 reviews)</h2>
       <div class="testimonial-grid">
         <blockquote class="testimonial">
           <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -129,20 +130,6 @@ const featuredStories = featuredSlugs
     </div>
   </section>
 
-  <!-- Newsletter -->
-  <section class="section">
-    <div class="container">
-      <div class="newsletter-box">
-        <h3>Get a New Story Every Week</h3>
-        <p>One estate sale story in your inbox, every Tuesday. Plus book updates and behind-the-scenes tales.</p>
-        <form class="newsletter-form" action="#" method="post">
-          <input type="email" name="email" placeholder="Your email address" required />
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
   <!-- Book CTA -->
   <section class="section" style="background: var(--bg-warm);">
     <div class="container" style="text-align: center;">
@@ -152,6 +139,13 @@ const featuredStories = featuredSlugs
         <em>Estate Sale Tales</em> collects the best stories from two decades of clearing out homes — the funny, the bizarre, the heartwarming, and the ones that still keep us up at night.
       </p>
       <a href="/book" class="btn btn-primary">Get the Book</a>
+      <div style="margin-top: 2.5rem;">
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Or get a free story every week:</p>
+        <form class="newsletter-form" action="#" method="post" style="justify-content: center;">
+          <input type="email" name="email" placeholder="Your email address" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
     </div>
   </section>
 </Layout>
@@ -218,6 +212,14 @@ const featuredStories = featuredSlugs
     .hero-actions { justify-content: center; }
     .hero-book { order: -1; }
     .hero-book-img { width: 200px; margin: 0 auto; }
+  }
+  .about-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(44,36,32,0.1);
   }
   .about-teaser {
     max-width: 680px;

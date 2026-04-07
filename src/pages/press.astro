@@ -37,9 +37,10 @@ import Layout from '../layouts/Layout.astro';
           <p>
             High-resolution book cover images are available for media use. Please contact us to receive the files.
           </p>
-          <div class="cover-placeholder">
-            <span>Book cover image coming soon</span>
-          </div>
+          <img src="/book-cover.jpg" alt="Estate Sale Tales book cover" style="width: 200px; border-radius: 8px; margin-top: 0.75rem;" />
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+            <a href="/book-cover.jpg" download>Download high-res cover</a>
+          </p>
         </div>
 
         <div class="press-block">
@@ -107,21 +108,6 @@ import Layout from '../layouts/Layout.astro';
     padding: 1rem;
     border-radius: var(--radius);
     margin-top: 0.75rem;
-  }
-  .cover-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    height: 280px;
-    background: var(--bg-warm);
-    border: 2px dashed var(--border);
-    border-radius: var(--radius);
-    margin-top: 0.75rem;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    text-align: center;
-    padding: 1rem;
   }
   .facts-list {
     list-style: none;
