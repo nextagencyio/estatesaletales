@@ -78,16 +78,19 @@ const featuredStories = allStories
       <h2 class="section-title">4.8 Stars on Amazon</h2>
       <div class="testimonial-grid">
         <blockquote class="testimonial">
+          <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p>"I was giggling and chuckling the whole flight!! People may have looked at me weird but I didn't care."</p>
-          <cite>— Saruhh</cite>
+          <cite>— Saruhh, Verified Purchase</cite>
         </blockquote>
         <blockquote class="testimonial">
+          <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p>"One of the funniest books I've ever read. Crazy, clean, and good stories that leave you laughing and marveling at human nature."</p>
-          <cite>— Richard B.</cite>
+          <cite>— Richard B., Verified Purchase</cite>
         </blockquote>
         <blockquote class="testimonial">
+          <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <p>"Being an estate liquidator in Fort Worth, I was grinning, nodding, and laughing page by page. I read it in 2 nights."</p>
-          <cite>— Georgann P Muckleroy</cite>
+          <cite>— Georgann P Muckleroy, Verified Purchase</cite>
         </blockquote>
       </div>
     </div>
@@ -197,6 +200,13 @@ const featuredStories = allStories
     border: 1px solid var(--border-light);
     border-radius: var(--radius-lg);
     padding: 1.75rem;
+  }
+  .review-stars {
+    display: block;
+    color: #e8a838;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
   }
   .testimonial p {
     font-family: var(--font-serif);
