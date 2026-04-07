@@ -45,7 +45,11 @@ const personSchema = {
 
         <div class="book-inline">
           <a href="/book"><img src="/book-cover-thumb.jpg" alt="Estate Sale Tales" class="book-inline-img" /></a>
-          <p class="book-inline-link"><a href="/book">Get the book &rarr;</a></p>
+          <div>
+            <p class="book-inline-title">Estate Sale Tales</p>
+            <p class="book-inline-desc">50+ true stories from the field. Available on Amazon in paperback and Kindle.</p>
+            <a href="/book" class="book-inline-link">Get the book &rarr;</a>
+          </div>
         </div>
 
         <h2>Contributors</h2>
@@ -118,16 +122,32 @@ const personSchema = {
     border-radius: var(--radius-lg);
     margin: 2rem 0;
     border: 1px solid var(--border-light);
+    max-width: 420px;
   }
   .book-inline-img {
-    width: 80px;
+    width: 70px;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(44,36,32,0.1);
     flex-shrink: 0;
   }
-  .book-inline-link {
-    font-size: 0.9rem;
+  .book-inline-title {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.25rem !important;
+  }
+  .book-inline-desc {
     font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0.4rem !important;
+  }
+  .book-inline-link {
+    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
   }
   @media (max-width: 640px) {
     .author-photo-wrapper {
