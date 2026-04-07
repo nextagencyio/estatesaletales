@@ -75,11 +75,15 @@ const featuredStories = featuredSlugs
     <div class="container about-teaser">
       <p class="section-label">About the Author</p>
       <h2 class="section-title">20 Years. 1,000+ Homes. Countless Stories.</h2>
-      <img src="/author-photo.jpg" alt="Susan Callicott" class="about-photo" />
-      <p class="section-subtitle">
-        Susan Callicott, founder of Lucy & Ethel Estate Sales in the Dallas/Fort Worth area, has spent over two decades clearing out homes and collecting the wildest stories along the way. What started as a career became a front-row seat to the strangest, funniest, and most human moments imaginable.
-      </p>
-      <a href="/about" class="btn btn-secondary" style="margin-top: 1.5rem;">Learn More</a>
+      <div class="about-grid">
+        <img src="/author-photo.jpg" alt="Susan Callicott" class="about-photo" />
+        <div>
+          <p class="section-subtitle">
+            Susan Callicott, founder of Lucy & Ethel Estate Sales in the Dallas/Fort Worth area, has spent over two decades clearing out homes and collecting the wildest stories along the way. What started as a career became a front-row seat to the strangest, funniest, and most human moments imaginable.
+          </p>
+          <a href="/about" class="btn btn-secondary" style="margin-top: 1rem;">Learn More</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -222,7 +226,24 @@ const featuredStories = featuredSlugs
     box-shadow: 0 4px 12px rgba(44,36,32,0.1);
   }
   .about-teaser {
-    max-width: 680px;
+    max-width: 720px;
+  }
+  .about-grid {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+  }
+  .about-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(44,36,32,0.1);
+  }
+  @media (max-width: 640px) {
+    .about-grid { flex-direction: column; align-items: center; text-align: center; }
   }
   .testimonial-grid {
     display: grid;
