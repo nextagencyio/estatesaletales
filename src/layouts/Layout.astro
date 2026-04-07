@@ -71,7 +71,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     <slot />
 
     <!-- Sticky Newsletter Bar -->
-    <div class="sticky-newsletter" id="stickyNewsletter">
+    <div class="sticky-newsletter" id="stickyNewsletter" style="display:none">
       <div class="container sticky-newsletter-inner">
         <p class="sticky-newsletter-text"><strong>Get a new estate sale story every week.</strong> Free in your inbox.</p>
         <form class="sticky-newsletter-form" action="#" method="post">
@@ -91,7 +91,8 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
       if (!dismissed && bar) {
         window.addEventListener('scroll', function showBar() {
           if (window.scrollY > document.body.scrollHeight * 0.3) {
-            bar.classList.add('visible');
+            bar.style.display = '';
+            requestAnimationFrame(() => bar.classList.add('visible'));
             window.removeEventListener('scroll', showBar);
           }
         });
