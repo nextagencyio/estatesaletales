@@ -54,7 +54,7 @@ const storiesByCategory = categories.map((category) => ({
     </section>
   ))}
 
-  <section class="section" style="background: var(--bg-warm);">
+  <section class="section cta-section">
     <div class="container text-center" style="max-width: 600px;">
       <h2 class="section-title">Have an Estate Sale Story?</h2>
       <p class="section-subtitle" style="margin: 0 auto 1.5rem;">
@@ -75,6 +75,10 @@ const storiesByCategory = categories.map((category) => ({
   }
   .category-section:nth-child(even) {
     background: var(--bg-warm);
+  }
+  .cta-section {
+    background: var(--bg);
+    border-top: 1px solid var(--border-light);
   }
   .category-heading {
     font-family: var(--font-serif);
