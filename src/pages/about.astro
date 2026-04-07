@@ -44,9 +44,9 @@ const personSchema = {
           The book isn't a how-to guide for running estate sales (though we have some of those in our <a href="/guides">Guides section</a>). It's a collection of true stories that capture the full spectrum of what it's like to walk into someone else's home and help sort through a lifetime of belongings.
         </p>
 
-        <div style="text-align: center; margin: 2rem 0;">
-          <a href="/book"><img src="/book-cover-thumb.jpg" alt="Estate Sale Tales" style="width: 180px; border-radius: 8px; box-shadow: 0 4px 12px rgba(44,36,32,0.1);" /></a>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem;"><a href="/book">Get the book &rarr;</a></p>
+        <div style="text-align: center; margin: 1.5rem 0;">
+          <a href="/book"><img src="/book-cover-thumb.jpg" alt="Estate Sale Tales" style="width: 120px; border-radius: 6px; box-shadow: 0 4px 12px rgba(44,36,32,0.1);" /></a>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;"><a href="/book">Get the book &rarr;</a></p>
         </div>
 
         <h2>Contributors</h2>
@@ -101,12 +101,19 @@ const personSchema = {
   }
   .author-photo-wrapper {
     float: right;
-    margin-left: 2rem;
-    margin-bottom: 1rem;
+    margin: 0.25rem 0 1.5rem 2rem;
   }
   .author-photo {
-    width: 200px;
-    border-radius: 12px;
+    width: 180px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(44,36,32,0.1);
+  }
+  @media (max-width: 640px) {
+    .author-photo-wrapper {
+      float: none;
+      text-align: center;
+      margin: 0 0 1.5rem 0;
+    }
+    .author-photo { width: 160px; }
   }
 </style>
