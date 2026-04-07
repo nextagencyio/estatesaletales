@@ -62,8 +62,11 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     <nav class="nav">
       <div class="container">
         <a href="/" class="nav-logo">
-          <span class="nav-logo-title">Estate Sale Tales</span>
-          <span class="nav-logo-author">by Susan Callicott</span>
+          <img src="/logo.png" alt="" class="nav-logo-img" />
+          <span class="nav-logo-text">
+            <span class="nav-logo-title">Estate Sale Tales</span>
+            <span class="nav-logo-author">by Susan Callicott</span>
+          </span>
         </a>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
           <span></span><span></span><span></span>
@@ -220,16 +223,22 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   }
   .nav .container { display: flex; align-items: center; justify-content: space-between; }
   .nav-logo {
-    display: flex; flex-direction: column; text-decoration: none; line-height: 1;
+    display: flex; align-items: center; gap: 0.65rem;
+    text-decoration: none; line-height: 1;
   }
   .nav-logo:hover .nav-logo-title { color: var(--accent); }
+  .nav-logo-img {
+    height: 34px; width: auto; border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .nav-logo-text { display: flex; flex-direction: column; }
   .nav-logo-title {
-    font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+    font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700;
     color: var(--text); letter-spacing: -0.01em;
     transition: color var(--transition);
   }
   .nav-logo-author {
-    font-family: var(--font-serif); font-size: 0.7rem; font-weight: 400;
+    font-family: var(--font-serif); font-size: 0.68rem; font-weight: 400;
     color: var(--text-muted); font-style: italic;
     margin-top: 0.1rem;
   }
