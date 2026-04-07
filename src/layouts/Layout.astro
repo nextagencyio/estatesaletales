@@ -70,6 +70,42 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
 
     <slot />
 
+    <!-- Sticky Newsletter Bar -->
+    <div class="sticky-newsletter" id="stickyNewsletter">
+      <div class="container sticky-newsletter-inner">
+        <p class="sticky-newsletter-text"><strong>Get a new estate sale story every week.</strong> Free in your inbox.</p>
+        <form class="sticky-newsletter-form" action="#" method="post">
+          <input type="email" name="email" placeholder="Your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+        <button class="sticky-newsletter-close" id="closeNewsletter" aria-label="Close newsletter bar">&times;</button>
+      </div>
+    </div>
+
+    <script>
+      // Show after scrolling 40% of the page, hide if dismissed
+      const bar = document.getElementById('stickyNewsletter');
+      const closeBtn = document.getElementById('closeNewsletter');
+      let dismissed = sessionStorage.getItem('newsletter_dismissed');
+
+      if (!dismissed && bar) {
+        window.addEventListener('scroll', function showBar() {
+          if (window.scrollY > document.body.scrollHeight * 0.3) {
+            bar.classList.add('visible');
+            window.removeEventListener('scroll', showBar);
+          }
+        });
+      }
+
+      if (closeBtn && bar) {
+        closeBtn.addEventListener('click', () => {
+          bar.classList.remove('visible');
+          bar.classList.add('hidden');
+          sessionStorage.setItem('newsletter_dismissed', '1');
+        });
+      }
+    </script>
+
     <footer class="footer">
       <div class="container">
         <div class="footer-grid">
@@ -303,10 +339,53 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   .footer-bottom { padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; }
   .footer-bottom p { color: var(--text-muted); font-size: 0.8rem; }
 
+  /* Sticky Newsletter Bar */
+  .sticky-newsletter {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+    background: var(--accent); color: white;
+    padding: 0.85rem 0;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+  }
+  .sticky-newsletter.visible { transform: translateY(0); }
+  .sticky-newsletter.hidden { transform: translateY(100%); }
+  .sticky-newsletter-inner {
+    display: flex; align-items: center; gap: 1.25rem; justify-content: center; flex-wrap: wrap;
+  }
+  .sticky-newsletter-text {
+    font-size: 0.9rem; color: white; margin: 0;
+  }
+  .sticky-newsletter-text strong { font-weight: 700; }
+  .sticky-newsletter-form {
+    display: flex; gap: 0.4rem;
+  }
+  .sticky-newsletter-form input {
+    padding: 0.5rem 0.85rem; border: none; border-radius: var(--radius);
+    font-size: 0.85rem; width: 200px; background: rgba(255,255,255,0.95); color: var(--text);
+  }
+  .sticky-newsletter-form input::placeholder { color: var(--text-muted); }
+  .sticky-newsletter-form button {
+    padding: 0.5rem 1rem; background: white; color: var(--accent);
+    border: none; border-radius: var(--radius); font-weight: 700;
+    font-size: 0.85rem; cursor: pointer; transition: background var(--transition);
+  }
+  .sticky-newsletter-form button:hover { background: rgba(255,255,255,0.9); }
+  .sticky-newsletter-close {
+    background: none; border: none; color: rgba(255,255,255,0.7);
+    font-size: 1.4rem; cursor: pointer; padding: 0 0.25rem; line-height: 1;
+    transition: color var(--transition);
+  }
+  .sticky-newsletter-close:hover { color: white; }
+
   @media (max-width: 768px) {
     .section { padding: 3.5rem 0; }
     .card-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     .newsletter-form { flex-direction: column; }
+    .sticky-newsletter-inner { flex-direction: column; text-align: center; gap: 0.75rem; }
+    .sticky-newsletter-form input { width: 160px; }
+    .sticky-newsletter-close { position: absolute; top: 0.5rem; right: 1rem; }
+    .sticky-newsletter { padding: 1rem 0; position: relative; }
   }
 </style>
