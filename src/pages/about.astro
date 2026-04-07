@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Susan Callicott",
+  "description": "Author of Estate Sale Tales. Founder of Lucy & Ethel Estate Sales in the Dallas/Fort Worth area with 20+ years of estate liquidation experience.",
+  "url": "https://estatesaletales.com/about",
+  "sameAs": []
+};
+---
+
+<Layout
+  title="About Susan Callicott — Estate Sale Tales"
+  description="Meet Susan Callicott, founder of Lucy & Ethel Estate Sales and author of Estate Sale Tales. 20+ years of estate liquidation, 1,000+ homes, and countless stories."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+  <section class="section">
+    <div class="container content-section">
+      <p class="section-label">About</p>
+      <h1 class="section-title">The Story Behind the Stories</h1>
+
+      <div class="prose-content">
+        <h2>Meet Susan Callicott</h2>
+        <p>
+          Susan Callicott is the founder of <strong>Lucy & Ethel Estate Sales</strong>, based in the Dallas/Fort Worth, Texas area. For more than 20 years, she's been in the estate liquidation business — clearing out well over 1,000 homes and accumulating enough wild stories to fill a book. Which is exactly what she did.
+        </p>
+
+        <p>
+          After two decades of encountering snakes under beds, hidden treasures in coat pockets, unexpected visitors (clothed and otherwise), and enough hoarder houses to last a lifetime, Susan finally put pen to paper. The result is <strong><a href="/book">Estate Sale Tales</a></strong> — a collection of the funniest, strangest, and most heartwarming true stories from a career spent walking into other people's homes and sorting through their lives.
+        </p>
+
+        <h2>Why a Book?</h2>
+        <p>
+          For years, these stories lived as anecdotes told at dinner parties, swapped between colleagues in the estate sale world, and shared with anyone who'd listen. Friends and family kept saying "you should write a book." Eventually, the pile of stories got big enough — and strange enough — that it felt like a disservice not to.
+        </p>
+        <p>
+          The book isn't a how-to guide for running estate sales (though we have some of those in our <a href="/guides">Guides section</a>). It's a collection of true stories that capture the full spectrum of what it's like to walk into someone else's home and help sort through a lifetime of belongings.
+        </p>
+
+        <h2>Contributors</h2>
+        <p>
+          While the core stories come from Susan's career at Lucy & Ethel Estate Sales, this book wouldn't be complete without contributions from others in the industry. Fellow estate sale professionals, auction house operators, cleanout crews, and even a few real estate agents have shared their own unforgettable moments. Their stories — attributed with permission — add depth, variety, and proof that this line of work is universally wild.
+        </p>
+
+        <h2>Get in Touch</h2>
+        <p>
+          Have a story to share? Media inquiry? Just want to say hi?
+        </p>
+        <p>
+          Email us at <a href="mailto:hello@estatesaletales.com">hello@estatesaletales.com</a>
+        </p>
+        <p>
+          For press inquiries, see our <a href="/press">Press page</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .content-section {
+    max-width: 680px;
+  }
+  .prose-content {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: var(--text);
+    margin-top: 2rem;
+  }
+  .prose-content p {
+    margin-bottom: 1.25rem;
+  }
+  .prose-content h2 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+  .prose-content strong {
+    font-weight: 600;
+  }
+  .prose-content a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

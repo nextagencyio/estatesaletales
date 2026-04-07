@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Newsletter — Estate Sale Tales"
+  description="Get one true estate sale story in your inbox every week. Plus book updates and behind-the-scenes tales."
+>
+  <section class="section">
+    <div class="container newsletter-page">
+      <p class="section-label">Newsletter</p>
+      <h1 class="section-title">One Story, Every Week</h1>
+      <p class="section-subtitle">
+        Every Tuesday, we send one true story from the world of estate liquidation straight to your inbox. No spam, no fluff — just the kind of story you'll read aloud to whoever's nearby.
+      </p>
+
+      <div class="signup-box">
+        <h2>What You'll Get</h2>
+        <ul class="benefits-list">
+          <li>One estate sale story every Tuesday</li>
+          <li>Behind-the-scenes tales that don't make it to the site</li>
+          <li>Book updates and early access to new content</li>
+          <li>Occasional bonus stories from industry contributors</li>
+        </ul>
+
+        <form class="newsletter-form-large" action="#" method="post">
+          <label for="email" class="form-label">Your email address</label>
+          <div class="form-row">
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </div>
+          <p class="form-note">No spam, ever. Unsubscribe anytime.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .newsletter-page {
+    max-width: 600px;
+    text-align: center;
+  }
+  .section-subtitle {
+    margin: 0 auto 2.5rem;
+  }
+  .signup-box {
+    background: var(--bg-warm);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    margin-top: 2rem;
+    text-align: left;
+  }
+  .signup-box h2 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  .benefits-list li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .benefits-list li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .form-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .form-row input {
+    flex: 1;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    background: var(--bg-card);
+  }
+  .form-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+  }
+  @media (max-width: 640px) {
+    .form-row {
+      flex-direction: column;
+    }
+  }
+</style>

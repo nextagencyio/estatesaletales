@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allStories = await getCollection('stories');
+const featuredStories = allStories
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 4);
+---
+
+<Layout>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="section-label">From the world of estate liquidation</p>
+      <h1 class="hero-title">True Stories from 20 Years of Estate Liquidation</h1>
+      <p class="hero-subtitle">
+        After clearing out 1,000+ homes, you see things. A snake under the bed. A goose blocking traffic. A naked man in the kitchen. These are the stories we couldn't make up.
+      </p>
+      <div class="hero-actions">
+        <a href="/stories" class="btn btn-primary">Read Stories</a>
+        <a href="/book" class="btn btn-secondary">Get the Book</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Stories -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Latest Stories</p>
+      <h2 class="section-title">Fresh from the Field</h2>
+      <p class="section-subtitle">Real encounters from real estate sales. You can't make this stuff up.</p>
+      <div class="card-grid" style="margin-top: 2rem;">
+        {featuredStories.map((story) => (
+          <a href={`/stories/${story.id}`} class="card">
+            <span class="card-category">
+              {story.data.category}
+              {story.data.inBook && <span class="card-badge">From the Book</span>}
+            </span>
+            <h3 class="card-title">{story.data.title}</h3>
+            <p class="card-excerpt">{story.data.excerpt}</p>
+            <div class="card-meta">
+              <span>{story.data.readTime}</span>
+              <span>&middot;</span>
+              <span>{story.data.date}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="/stories" class="btn btn-secondary">View All Stories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Teaser -->
+  <section class="section" style="background: var(--bg-warm);">
+    <div class="container about-teaser">
+      <p class="section-label">About the Author</p>
+      <h2 class="section-title">20 Years. 1,000+ Homes. Countless Stories.</h2>
+      <p class="section-subtitle">
+        Susan Callicott, founder of Lucy & Ethel Estate Sales in the Dallas/Fort Worth area, has spent over two decades clearing out homes and collecting the wildest stories along the way. What started as a career became a front-row seat to the strangest, funniest, and most human moments imaginable.
+      </p>
+      <a href="/about" class="btn btn-secondary" style="margin-top: 1.5rem;">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">What Readers Are Saying</p>
+      <h2 class="section-title">4.8 Stars on Amazon</h2>
+      <div class="testimonial-grid">
+        <blockquote class="testimonial">
+          <p>"I was giggling and chuckling the whole flight!! People may have looked at me weird but I didn't care."</p>
+          <cite>— Saruhh</cite>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p>"One of the funniest books I've ever read. Crazy, clean, and good stories that leave you laughing and marveling at human nature."</p>
+          <cite>— Richard B.</cite>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p>"Being an estate liquidator in Fort Worth, I was grinning, nodding, and laughing page by page. I read it in 2 nights."</p>
+          <cite>— Georgann P Muckleroy</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section">
+    <div class="container">
+      <div class="newsletter-box">
+        <h3>Get a New Story Every Week</h3>
+        <p>One estate sale story in your inbox, every Tuesday. Plus book updates and behind-the-scenes tales.</p>
+        <form class="newsletter-form" action="#" method="post">
+          <input type="email" name="email" placeholder="Your email address" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book CTA -->
+  <section class="section" style="background: var(--bg-warm);">
+    <div class="container" style="text-align: center;">
+      <p class="section-label">The Book</p>
+      <h2 class="section-title">These Stories (and 50 More) Are in the Book</h2>
+      <p class="section-subtitle" style="margin: 0 auto 1.5rem;">
+        <em>Estate Sale Tales</em> collects the best stories from two decades of clearing out homes — the funny, the bizarre, the heartwarming, and the ones that still keep us up at night.
+      </p>
+      <a href="/book" class="btn btn-primary">Get the Book</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: 6rem 0 5rem;
+    text-align: center;
+  }
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    line-height: 1.75;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .about-teaser {
+    max-width: 680px;
+  }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .testimonial {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+  }
+  .testimonial p {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+  .testimonial cite {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: normal;
+    font-weight: 500;
+  }
+</style>

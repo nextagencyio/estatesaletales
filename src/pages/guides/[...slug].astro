@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((guide) => ({
+    params: { slug: guide.id },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+const { Content } = await render(guide);
+
+const amazonUrl = 'https://www.amazon.com/Estate-Sale-Tales-Susan-Callicott-ebook/dp/B0D2DPC1Y1/';
+
+// Related guides: other guides, sorted by date, max 3
+const allGuides = await getCollection('guides');
+const relatedGuides = allGuides
+  .filter((g) => g.id !== guide.id)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": guide.data.title,
+  "description": guide.data.excerpt,
+  "datePublished": guide.data.date,
+  "author": {
+    "@type": "Person",
+    "name": "Susan Callicott"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Estate Sale Tales",
+    "url": "https://estatesaletales.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://estatesaletales.com/guides/${guide.id}`
+  }
+};
+---
+
+<Layout
+  title={`${guide.data.title} — Estate Sale Tales`}
+  description={guide.data.excerpt}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <section class="section">
+    <div class="container">
+      <div class="article-header">
+        <a href="/guides" class="article-back">&larr; All Guides</a>
+        <h1 class="article-title">{guide.data.title}</h1>
+        <div class="article-meta">
+          <span>{guide.data.readTime}</span>
+          <span>&middot;</span>
+          <span>{guide.data.date}</span>
+        </div>
+      </div>
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <div class="book-cta">
+        <p>Want the stories behind the advice? Estate Sale Tales has 50+ true stories from the field.</p>
+        <a href={amazonUrl} class="btn btn-primary" target="_blank" rel="noopener">Buy on Amazon</a>
+      </div>
+
+      {relatedGuides.length > 0 && (
+        <div class="related">
+          <h2 class="related-title">More Guides</h2>
+          <div class="card-grid">
+            {relatedGuides.map((related) => (
+              <a href={`/guides/${related.id}`} class="card">
+                <h3 class="card-title">{related.data.title}</h3>
+                <p class="card-excerpt">{related.data.excerpt}</p>
+                <div class="card-meta">
+                  <span>{related.data.readTime}</span>
+                  <span>&middot;</span>
+                  <span>{related.data.date}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

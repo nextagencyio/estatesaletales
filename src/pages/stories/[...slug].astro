@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const stories = await getCollection('stories');
+  return stories.map((story) => ({
+    params: { slug: story.id },
+    props: { story },
+  }));
+}
+
+const { story } = Astro.props;
+const { Content } = await render(story);
+
+const amazonUrl = 'https://www.amazon.com/Estate-Sale-Tales-Susan-Callicott-ebook/dp/B0D2DPC1Y1/';
+
+// Related stories: same category first, then others, max 3
+const allStories = await getCollection('stories');
+const sameCategory = allStories
+  .filter((s) => s.id !== story.id && s.data.category === story.data.category)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const otherStories = allStories
+  .filter((s) => s.id !== story.id && s.data.category !== story.data.category)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const relatedStories = [...sameCategory, ...otherStories].slice(0, 3);
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": story.data.title,
+  "description": story.data.excerpt,
+  "datePublished": story.data.date,
+  "author": {
+    "@type": "Person",
+    "name": story.data.contributor || "Susan Callicott"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Estate Sale Tales",
+    "url": "https://estatesaletales.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://estatesaletales.com/stories/${story.id}`
+  }
+};
+---
+
+<Layout
+  title={`${story.data.title} — Estate Sale Tales`}
+  description={story.data.excerpt}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <section class="section">
+    <div class="container">
+      <div class="article-header">
+        <a href="/stories" class="article-back">&larr; All Stories</a>
+        <span class="card-category">
+          {story.data.category}
+          {story.data.inBook && <span class="card-badge">From the Book</span>}
+        </span>
+        <h1 class="article-title">{story.data.title}</h1>
+        <div class="article-meta">
+          <span>{story.data.readTime}</span>
+          <span>&middot;</span>
+          <span>{story.data.date}</span>
+        </div>
+        {story.data.contributor && (
+          <p class="article-contributor">
+            Contributed by {story.data.contributor}
+            {story.data.contributorCompany && `, ${story.data.contributorCompany}`}
+            {story.data.contributorLocation && ` — ${story.data.contributorLocation}`}
+          </p>
+        )}
+      </div>
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <div class="book-cta">
+        <p>
+          {story.data.inBook
+            ? "This story is from Estate Sale Tales — the book."
+            : "Like this story? There are 50+ more in Estate Sale Tales — the book."}
+        </p>
+        <a href={amazonUrl} class="btn btn-primary" target="_blank" rel="noopener">Buy on Amazon</a>
+      </div>
+
+      {relatedStories.length > 0 && (
+        <div class="related">
+          <h2 class="related-title">More Stories</h2>
+          <div class="card-grid">
+            {relatedStories.map((related) => (
+              <a href={`/stories/${related.id}`} class="card">
+                <span class="card-category">
+                  {related.data.category}
+                  {related.data.inBook && <span class="card-badge">From the Book</span>}
+                </span>
+                <h3 class="card-title">{related.data.title}</h3>
+                <p class="card-excerpt">{related.data.excerpt}</p>
+                <div class="card-meta">
+                  <span>{related.data.readTime}</span>
+                  <span>&middot;</span>
+                  <span>{related.data.date}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

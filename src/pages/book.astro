@@ -1,0 +1,266 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const amazonUrl = 'https://www.amazon.com/Estate-Sale-Tales-Susan-Callicott-ebook/dp/B0D2DPC1Y1/';
+
+const bookSchema = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Estate Sale Tales",
+  "description": "True stories from 20 years of estate liquidation — funny, bizarre, and heartwarming tales from clearing out 1,000+ homes.",
+  "author": {
+    "@type": "Person",
+    "name": "Susan Callicott"
+  },
+  "genre": "Humor / Nonfiction",
+  "inLanguage": "en",
+  "bookFormat": "https://schema.org/Paperback",
+  "url": "https://estatesaletales.com/book",
+  "sameAs": amazonUrl,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "bestRating": "5",
+    "ratingCount": "8"
+  }
+};
+---
+
+<Layout
+  title="The Book — Estate Sale Tales by Susan Callicott"
+  description="Estate Sale Tales by Susan Callicott. 4.8 stars on Amazon. True stories from 20 years of clearing out 1,000+ homes. Funny, bizarre, heartwarming, and completely real."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(bookSchema)} />
+
+  <!-- Book Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="section-label">The Book</p>
+      <h1 class="section-title" style="max-width: 700px; margin-left: auto; margin-right: auto;">Estate Sale Tales</h1>
+      <p class="hero-author">by Susan Callicott</p>
+      <p class="hero-rating">4.8 out of 5 stars on Amazon</p>
+      <p class="section-subtitle" style="margin: 0 auto 2rem; text-align: center; max-width: 600px;">
+        True stories from 20 years of estate liquidation. The funniest, strangest, and most heartwarming tales from a career clearing out 1,000+ homes.
+      </p>
+      <div class="hero-actions">
+        <a href={amazonUrl} class="btn btn-primary" target="_blank" rel="noopener">Buy on Amazon</a>
+        <a href="https://bookshop.org" class="btn btn-secondary" target="_blank" rel="noopener">Buy on Bookshop.org</a>
+      </div>
+      <p class="hero-formats">Available in Paperback and Kindle</p>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Reader Reviews</p>
+      <h2 class="section-title">What Readers Are Saying</h2>
+      <div class="reviews-grid">
+        <blockquote class="review-card">
+          <p>"I was giggling and chuckling the whole flight!! People may have looked at me weird but I didn't care."</p>
+          <cite>— Saruhh</cite>
+        </blockquote>
+        <blockquote class="review-card">
+          <p>"One of the funniest books I've ever read. Crazy, clean, and good stories that leave you laughing and marveling at human nature."</p>
+          <cite>— Richard B.</cite>
+        </blockquote>
+        <blockquote class="review-card">
+          <p>"Being an estate liquidator in Fort Worth, I was grinning, nodding, and laughing page by page. I read it in 2 nights."</p>
+          <cite>— Georgann P Muckleroy</cite>
+        </blockquote>
+        <blockquote class="review-card">
+          <p>"Truly laugh-out-loud funny! Some stories make you laugh and others have you shaking your head wondering about people's behavior."</p>
+          <cite>— JJ</cite>
+        </blockquote>
+        <blockquote class="review-card">
+          <p>"This will definitely be on my Christmas giving list this year!"</p>
+          <cite>— Amazon Customer</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Inside -->
+  <section class="section" style="background: var(--bg-warm);">
+    <div class="container content-section">
+      <p class="section-label">What's Inside</p>
+      <h2 class="section-title">Stories You Won't Believe Are True</h2>
+      <ul class="whats-inside-list">
+        <li><strong>Animal Encounters</strong> — Snakes, geese, raccoons, and creatures you wouldn't expect to find in a house.</li>
+        <li><strong>Awkward Moments</strong> — Naked homeowners, unexpected visitors, and situations no training can prepare you for.</li>
+        <li><strong>Hidden Treasures</strong> — Cash in the walls, diamonds in coat pockets, and valuables hiding in plain sight.</li>
+        <li><strong>Hoarder Houses</strong> — Navigating mountains of stuff, floor to ceiling, room after room.</li>
+        <li><strong>Heartwarming Finds</strong> — Love letters, photo albums, and the stories objects carry with them.</li>
+        <li><strong>The Unexplainable</strong> — Things that made us stop, scratch our heads, and call someone else over to look.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Sample Excerpt -->
+  <section class="section">
+    <div class="container content-section">
+      <p class="section-label">A Taste</p>
+      <h2 class="section-title">Sample Excerpt</h2>
+      <blockquote class="excerpt-block">
+        <p>
+          We'd been in the house for maybe ten minutes when I heard a scream from the back bedroom.
+          Not a "found a spider" scream. A real one. I dropped my clipboard and ran.
+          There was Linda, standing on the bed, pointing at the floor. And there it was — a four-foot black snake,
+          coiled up between the nightstand and the wall, looking at us like <em>we</em> were the intruders.
+        </p>
+        <p>Which, to be fair, we were.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Buy -->
+  <section class="section" style="background: var(--bg-warm);">
+    <div class="container" style="text-align: center;">
+      <p class="section-label">Get Your Copy</p>
+      <h2 class="section-title">Available Now</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">
+        Over 50 true stories from two decades of estate liquidation. Perfect for anyone who loves a good "you can't make this up" story.
+      </p>
+      <div class="hero-actions">
+        <a href={amazonUrl} class="btn btn-primary" target="_blank" rel="noopener">Buy on Amazon</a>
+        <a href="https://bookshop.org" class="btn btn-secondary" target="_blank" rel="noopener">Buy on Bookshop.org</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container content-section">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Common Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3>Are these stories real?</h3>
+          <p>Every single one. Names and some details have been changed for privacy, but the events are exactly as they happened.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is this the same content as the website?</h3>
+          <p>The book contains over 50 stories, many of which are exclusive to the book. The website features a curated selection to give you a taste of what's inside.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is there an ebook version?</h3>
+          <p>Yes! The book is available in both paperback and Kindle ebook formats on Amazon.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Who wrote this?</h3>
+          <p>Susan Callicott, founder of Lucy & Ethel Estate Sales in the Dallas/Fort Worth area. The book also includes contributions from other estate sale professionals in the industry. See the <a href="/about">About page</a> for more.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I share a story for a future edition?</h3>
+          <p>Absolutely. We're always collecting new stories. Reach out via the contact info on the <a href="/about">About page</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: 5rem 0 4rem;
+    text-align: center;
+  }
+  .hero-author {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .hero-rating {
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  .hero-formats {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .content-section {
+    max-width: 680px;
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .review-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+  }
+  .review-card p {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+  .review-card cite {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: normal;
+    font-weight: 500;
+  }
+  .whats-inside-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+  }
+  .whats-inside-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  .whats-inside-list li strong {
+    color: var(--text);
+  }
+  .excerpt-block {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: var(--text);
+    margin-top: 1.5rem;
+  }
+  .excerpt-block p {
+    margin-bottom: 1rem;
+  }
+  .faq-list {
+    margin-top: 1.5rem;
+  }
+  .faq-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-item h3 {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .faq-item p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+</style>

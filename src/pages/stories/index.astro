@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allStories = await getCollection('stories');
+const sortedStories = allStories.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Group stories by category
+const categories = [...new Set(sortedStories.map((s) => s.data.category))];
+const storiesByCategory = categories.map((category) => ({
+  category,
+  stories: sortedStories.filter((s) => s.data.category === category),
+}));
+---
+
+<Layout
+  title="Stories — Estate Sale Tales"
+  description="True stories from 20+ years of estate liquidation. Funny, bizarre, and heartwarming tales from clearing out 1,000+ homes."
+>
+  <section class="section">
+    <div class="container">
+      <p class="section-label">All Stories</p>
+      <h1 class="section-title">Estate Sale Stories</h1>
+      <p class="section-subtitle">
+        Every story here is true. Names and some details have been changed, but the events are exactly as they happened.
+      </p>
+    </div>
+  </section>
+
+  {storiesByCategory.map(({ category, stories }) => (
+    <section class="section category-section">
+      <div class="container">
+        <h2 class="category-heading">{category}</h2>
+        <div class="card-grid">
+          {stories.map((story) => (
+            <a href={`/stories/${story.id}`} class="card">
+              <span class="card-category">
+                {story.data.category}
+                {story.data.inBook && <span class="card-badge">From the Book</span>}
+              </span>
+              <h3 class="card-title">{story.data.title}</h3>
+              <p class="card-excerpt">{story.data.excerpt}</p>
+              <div class="card-meta">
+                <span>{story.data.readTime}</span>
+                <span>&middot;</span>
+                <span>{story.data.date}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+</Layout>
+
+<style>
+  .section-subtitle {
+    margin-bottom: 1rem;
+  }
+  .category-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .category-section:nth-child(even) {
+    background: var(--bg-warm);
+  }
+  .category-heading {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--accent-light);
+  }
+</style>

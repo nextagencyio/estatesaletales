@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Page Not Found — Estate Sale Tales"
+  description="This page doesn't exist. But we have plenty of estate sale stories that do."
+>
+  <section class="not-found">
+    <div class="container">
+      <p class="section-label">404</p>
+      <h1 class="section-title">This Room's Been Cleared Out</h1>
+      <p class="section-subtitle">
+        Looks like whatever was here has already been packed up and hauled away. It happens — we've cleared out over 1,000 homes, so we know the feeling.
+      </p>
+      <div class="not-found-actions">
+        <a href="/stories" class="btn btn-primary">Read Some Stories</a>
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .not-found {
+    padding: 8rem 0;
+    text-align: center;
+  }
+  .not-found .section-subtitle {
+    margin: 0 auto 2.5rem;
+    max-width: 500px;
+  }
+  .not-found-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
