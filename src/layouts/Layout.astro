@@ -72,6 +72,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
           <li><a href="/stories" class={Astro.url.pathname.startsWith('/stories') ? 'active' : ''}>Stories</a></li>
           <li><a href="/guides" class={Astro.url.pathname.startsWith('/guides') ? 'active' : ''}>Guides</a></li>
           <li><a href="/about" class={Astro.url.pathname === '/about' || Astro.url.pathname === '/about/' ? 'active' : ''}>About</a></li>
+          <li><a href="/newsletter" class={Astro.url.pathname === '/newsletter' || Astro.url.pathname === '/newsletter/' ? 'active' : ''}>Newsletter</a></li>
           <li><a href="/book" class={`nav-cta ${Astro.url.pathname === '/book' || Astro.url.pathname === '/book/' ? 'nav-cta-active' : ''}`}>Get the Book</a></li>
         </ul>
       </div>
@@ -202,12 +203,19 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
 
   .container { max-width: var(--container-max); margin: 0 auto; padding: 0 1.5rem; }
 
+  /* Top accent bar */
+  body::before {
+    content: ''; display: block; height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, #d4785a 50%, var(--accent) 100%);
+    position: sticky; top: 0; z-index: 101;
+  }
+
   /* Nav */
   .nav {
-    position: sticky; top: 0; z-index: 100;
-    padding: 1rem 0;
-    background: rgba(250, 247, 242, 0.92);
-    backdrop-filter: blur(12px);
+    position: sticky; top: 3px; z-index: 100;
+    padding: 0.85rem 0;
+    background: rgba(250, 247, 242, 0.95);
+    backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-light);
   }
   .nav .container { display: flex; align-items: center; justify-content: space-between; }
@@ -216,14 +224,14 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   }
   .nav-logo:hover .nav-logo-title { color: var(--accent); }
   .nav-logo-title {
-    font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700;
+    font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
     color: var(--text); letter-spacing: -0.01em;
     transition: color var(--transition);
   }
   .nav-logo-author {
-    font-family: var(--font-serif); font-size: 0.72rem; font-weight: 400;
+    font-family: var(--font-serif); font-size: 0.7rem; font-weight: 400;
     color: var(--text-muted); font-style: italic;
-    margin-top: 0.15rem;
+    margin-top: 0.1rem;
   }
   .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
   .nav-links a {
@@ -265,16 +273,22 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   /* Section helpers */
   .section { padding: 5rem 0; }
   .section-label {
-    display: inline-block; font-size: 0.8rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em;
+    display: inline-block; font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
     color: var(--accent); margin-bottom: 0.75rem;
   }
   .section-title {
     font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700; line-height: 1.2; margin-bottom: 1rem; color: var(--text);
   }
+  .section-title::after {
+    content: ''; display: block; width: 50px; height: 3px;
+    background: var(--accent); margin-top: 0.75rem; border-radius: 2px;
+  }
+  .section-title.center::after { margin-left: auto; margin-right: auto; }
   .section-subtitle {
     font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; line-height: 1.7;
+    margin-top: 0.5rem;
   }
 
   /* Cards */
@@ -282,9 +296,10 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   .card {
     display: block; padding: 1.75rem; background: var(--bg-card);
     border: 1px solid var(--border-light); border-radius: var(--radius-lg);
-    text-decoration: none; transition: box-shadow var(--transition), transform var(--transition);
+    border-left: 3px solid transparent;
+    text-decoration: none; transition: all var(--transition);
   }
-  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--border); }
+  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--border); border-left-color: var(--accent); }
   .card-category {
     display: inline-block; font-size: 0.72rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.06em;
@@ -308,8 +323,8 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     padding: 0.8rem 1.8rem; border-radius: var(--radius); font-size: 1rem;
     font-weight: 600; text-decoration: none; transition: all var(--transition); border: none; cursor: pointer;
   }
-  .btn-primary { background: var(--accent); color: white; }
-  .btn-primary:hover { background: var(--accent-hover); color: white; transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: white; box-shadow: 0 2px 8px rgba(169, 50, 50, 0.25); }
+  .btn-primary:hover { background: var(--accent-hover); color: white; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(169, 50, 50, 0.3); }
   .btn-secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
   .btn-secondary:hover { background: var(--accent-light); }
 
@@ -345,8 +360,9 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
 
   /* Book CTA box */
   .book-cta {
-    max-width: 680px; margin: 3rem auto; padding: 2rem;
-    background: var(--bg-accent); border: 1px solid var(--border);
+    max-width: 680px; margin: 3rem auto; padding: 2rem 2.5rem;
+    background: linear-gradient(135deg, var(--bg-accent) 0%, #faf5ee 100%);
+    border: 1px solid var(--border); border-left: 4px solid var(--accent);
     border-radius: var(--radius-lg); text-align: center;
   }
   .book-cta p { font-family: var(--font-serif); font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1rem; }
@@ -358,8 +374,10 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
 
   /* Newsletter box */
   .newsletter-box {
-    background: var(--bg-warm); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: 2.5rem; text-align: center;
+    background: linear-gradient(135deg, var(--bg-warm) 0%, #f0e8dc 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 3rem; text-align: center;
+    box-shadow: var(--shadow-sm);
   }
   .newsletter-box h3 { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.5rem; }
   .newsletter-box p { color: var(--text-secondary); margin-bottom: 1.25rem; }

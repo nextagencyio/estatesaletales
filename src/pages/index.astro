@@ -90,8 +90,8 @@ const featuredStories = featuredSlugs
   <!-- Amazon Reviews -->
   <section class="section">
     <div class="container">
-      <p class="section-label">Amazon Reviews</p>
-      <h2 class="section-title">4.8 Stars on Amazon (8 reviews)</h2>
+      <p class="section-label" style="text-align:center;display:block">Amazon Reviews</p>
+      <h2 class="section-title center">4.8 Stars on Amazon (8 reviews)</h2>
       <div class="testimonial-grid">
         <blockquote class="testimonial">
           <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -115,8 +115,8 @@ const featuredStories = featuredSlugs
   <!-- Industry Endorsements -->
   <section class="section" style="background: var(--bg-warm);">
     <div class="container">
-      <p class="section-label">Industry Endorsements</p>
-      <h2 class="section-title">Loved by Estate Sale Pros</h2>
+      <p class="section-label" style="text-align:center;display:block">Industry Endorsements</p>
+      <h2 class="section-title center">Loved by Estate Sale Pros</h2>
       <div class="testimonial-grid">
         <blockquote class="testimonial">
           <p>"Susan's 'Tales' are the real deal. A must-read that will keep you laughing long after the lights go out!"</p>
@@ -138,7 +138,7 @@ const featuredStories = featuredSlugs
   <section class="section" style="background: var(--bg-warm);">
     <div class="container" style="text-align: center;">
       <p class="section-label">The Book</p>
-      <h2 class="section-title">These Stories (and 50 More) Are in the Book</h2>
+      <h2 class="section-title center">These Stories (and 50 More) Are in the Book</h2>
       <p class="section-subtitle" style="margin: 0 auto 1.5rem;">
         <em>Estate Sale Tales</em> collects the best stories from two decades of clearing out homes — the funny, the bizarre, the heartwarming, and the ones that still keep us up at night.
       </p>
@@ -256,6 +256,18 @@ const featuredStories = featuredSlugs
     border: 1px solid var(--border-light);
     border-radius: var(--radius-lg);
     padding: 1.75rem;
+    position: relative;
+  }
+  .testimonial::before {
+    content: '\201C';
+    position: absolute;
+    top: 0.75rem;
+    right: 1.25rem;
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--accent-light);
+    opacity: 0.6;
   }
   .review-stars {
     display: block;
