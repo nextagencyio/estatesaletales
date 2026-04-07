@@ -28,6 +28,9 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     <link rel="canonical" href={canonicalUrl} />
 
     <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
@@ -58,7 +61,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   <body>
     <nav class="nav">
       <div class="container">
-        <a href="/" class="nav-logo">Estate Sale Tales</a>
+        <a href="/" class="nav-logo"><img src="/logo.png" alt="Estate Sale Tales" class="nav-logo-img" /></a>
         <ul class="nav-links">
           <li><a href="/stories">Stories</a></li>
           <li><a href="/guides">Guides</a></li>
@@ -192,11 +195,8 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     border-bottom: 1px solid var(--border-light);
   }
   .nav .container { display: flex; align-items: center; justify-content: space-between; }
-  .nav-logo {
-    font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
-    color: var(--text); text-decoration: none;
-  }
-  .nav-logo:hover { color: var(--accent); }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo-img { height: 36px; width: auto; border-radius: 4px; }
   .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
   .nav-links a {
     color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
