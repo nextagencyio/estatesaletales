@@ -11,15 +11,21 @@ const featuredStories = allStories
 <Layout>
   <!-- Hero -->
   <section class="hero">
-    <div class="container">
-      <p class="section-label">From the world of estate liquidation</p>
-      <h1 class="hero-title">True Stories from 20 Years of Estate Liquidation</h1>
-      <p class="hero-subtitle">
-        After clearing out 1,000+ homes, you see things. A snake under the bed. A goose blocking traffic. A naked man in the kitchen. These are the stories we couldn't make up.
-      </p>
-      <div class="hero-actions">
-        <a href="/stories" class="btn btn-primary">Read Stories</a>
-        <a href="/book" class="btn btn-secondary">Get the Book</a>
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <p class="section-label">From the world of estate liquidation</p>
+        <h1 class="hero-title">True Stories from 20 Years of Estate Liquidation</h1>
+        <p class="hero-subtitle">
+          After clearing out 1,000+ homes, you see things. A snake under the bed. A goose blocking traffic. A naked man in the kitchen. These are the stories we couldn't make up.
+        </p>
+        <div class="hero-actions">
+          <a href="https://www.amazon.com/Estate-Sale-Tales-Susan-Callicott-ebook/dp/B0D2DPC1Y1/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get the Book</a>
+          <a href="/stories" class="btn btn-secondary">Read Stories Free</a>
+        </div>
+        <p class="hero-rating">&#9733;&#9733;&#9733;&#9733;&#9733; 4.8 stars on Amazon</p>
+      </div>
+      <div class="hero-book">
+        <img src="/book-cover.jpg" alt="Estate Sale Tales by Susan Callicott — book cover" class="hero-book-img" />
       </div>
     </div>
   </section>
@@ -116,32 +122,66 @@ const featuredStories = allStories
 
 <style>
   .hero {
-    padding: 6rem 0 5rem;
-    text-align: center;
+    padding: 6rem 0 4rem;
+    background: linear-gradient(135deg, var(--bg-accent) 0%, var(--bg) 100%);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-content {
+    max-width: 580px;
   }
   .hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-size: clamp(2rem, 4vw, 2.8rem);
     font-weight: 700;
     line-height: 1.15;
     margin-bottom: 1.25rem;
     color: var(--text);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
   }
   .hero-subtitle {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    max-width: 640px;
-    margin: 0 auto 2rem;
+    margin-bottom: 2rem;
     line-height: 1.75;
   }
   .hero-actions {
     display: flex;
     gap: 1rem;
-    justify-content: center;
     flex-wrap: wrap;
+  }
+  .hero-rating {
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .hero-book {
+    flex-shrink: 0;
+  }
+  .hero-book-img {
+    width: 280px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg), 0 20px 60px rgba(42, 51, 40, 0.15);
+    transform: rotate(2deg);
+    transition: transform 0.3s ease;
+  }
+  .hero-book-img:hover {
+    transform: rotate(0deg) scale(1.02);
+  }
+  @media (max-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2.5rem;
+    }
+    .hero-content { max-width: 100%; }
+    .hero-actions { justify-content: center; }
+    .hero-book { order: -1; }
+    .hero-book-img { width: 200px; margin: 0 auto; }
   }
   .about-teaser {
     max-width: 680px;
