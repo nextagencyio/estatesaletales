@@ -20,7 +20,7 @@ const sortedGuides = allGuides.sort(
         Practical advice from two decades of estate liquidation. Whether you're running a sale, hiring someone, or just trying to figure out what Grandma's stuff is worth.
       </p>
 
-      <div class="card-grid" style="margin-top: 2.5rem;">
+      <div class="guides-grid" style="margin-top: 2.5rem;">
         {sortedGuides.map((guide) => (
           <a href={`/guides/${guide.id}`} class="card">
             <h3 class="card-title">{guide.data.title}</h3>
@@ -36,3 +36,20 @@ const sortedGuides = allGuides.sort(
     </div>
   </section>
 </Layout>
+
+<style>
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .guides-grid .card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    justify-self: center;
+  }
+  @media (max-width: 768px) {
+    .guides-grid { grid-template-columns: 1fr; }
+    .guides-grid .card:last-child:nth-child(odd) { max-width: 100%; }
+  }
+</style>

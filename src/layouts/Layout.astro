@@ -121,8 +121,10 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     </script>
 
     <script>
-      // Scroll-triggered animations
+      // Scroll-triggered animations (progressive enhancement)
+      document.documentElement.classList.add('has-scroll-anim');
       const animEls = document.querySelectorAll('.section, .card, .testimonial, .book-cta, .newsletter-box, .review-card, .about-grid, .press-block, .signup-box');
+      animEls.forEach(el => el.classList.add('anim'));
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -431,36 +433,32 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   .footer-bottom { padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; }
   .footer-bottom p { color: var(--text-muted); font-size: 0.8rem; }
 
-  /* Scroll animations */
-  .section, .card, .testimonial, .book-cta, .newsletter-box,
-  .review-card, .about-grid, .press-block, .signup-box {
+  /* Scroll animations — only applied after JS adds .has-scroll-anim to html */
+  html.has-scroll-anim .anim {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
-  .in-view {
+  html.has-scroll-anim .anim.in-view {
     opacity: 1;
     transform: translateY(0);
   }
   /* Stagger cards within a grid */
-  .card-grid .card.in-view:nth-child(2) { transition-delay: 0.1s; }
-  .card-grid .card.in-view:nth-child(3) { transition-delay: 0.2s; }
-  .card-grid .card.in-view:nth-child(4) { transition-delay: 0.15s; }
-  .card-grid .card.in-view:nth-child(5) { transition-delay: 0.25s; }
-  .card-grid .card.in-view:nth-child(6) { transition-delay: 0.3s; }
-  .testimonial-grid .testimonial.in-view:nth-child(2) { transition-delay: 0.1s; }
-  .testimonial-grid .testimonial.in-view:nth-child(3) { transition-delay: 0.2s; }
-  .reviews-grid .review-card.in-view:nth-child(2) { transition-delay: 0.1s; }
-  .reviews-grid .review-card.in-view:nth-child(3) { transition-delay: 0.15s; }
-  .reviews-grid .review-card.in-view:nth-child(4) { transition-delay: 0.1s; }
-  .reviews-grid .review-card.in-view:nth-child(5) { transition-delay: 0.2s; }
-  .reviews-grid .review-card.in-view:nth-child(6) { transition-delay: 0.25s; }
+  html.has-scroll-anim .card-grid .anim.in-view:nth-child(2) { transition-delay: 0.1s; }
+  html.has-scroll-anim .card-grid .anim.in-view:nth-child(3) { transition-delay: 0.2s; }
+  html.has-scroll-anim .card-grid .anim.in-view:nth-child(4) { transition-delay: 0.15s; }
+  html.has-scroll-anim .card-grid .anim.in-view:nth-child(5) { transition-delay: 0.25s; }
+  html.has-scroll-anim .card-grid .anim.in-view:nth-child(6) { transition-delay: 0.3s; }
+  html.has-scroll-anim .testimonial-grid .anim.in-view:nth-child(2) { transition-delay: 0.1s; }
+  html.has-scroll-anim .testimonial-grid .anim.in-view:nth-child(3) { transition-delay: 0.2s; }
+  html.has-scroll-anim .reviews-grid .anim.in-view:nth-child(2) { transition-delay: 0.1s; }
+  html.has-scroll-anim .reviews-grid .anim.in-view:nth-child(3) { transition-delay: 0.15s; }
+  html.has-scroll-anim .reviews-grid .anim.in-view:nth-child(4) { transition-delay: 0.1s; }
+  html.has-scroll-anim .reviews-grid .anim.in-view:nth-child(5) { transition-delay: 0.2s; }
+  html.has-scroll-anim .reviews-grid .anim.in-view:nth-child(6) { transition-delay: 0.25s; }
   /* Respect reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
-    .section, .card, .testimonial, .book-cta, .newsletter-box,
-    .review-card, .about-grid, .press-block, .signup-box {
-      opacity: 1; transform: none; transition: none;
-    }
+    html.has-scroll-anim .anim { opacity: 1; transform: none; transition: none; }
   }
 
   /* Sticky Newsletter Bar */
