@@ -135,19 +135,19 @@ const featuredStories = featuredSlugs
   </section>
 
   <!-- Book CTA -->
-  <section class="book-cta-section">
+  <section class="section book-cta-section">
     <div class="container text-center">
-      <p class="section-label" style="color: rgba(255,255,255,0.7);">The Book</p>
-      <h2 class="section-title" style="color: white;">These Stories (and 50 More) Are in the Book</h2>
-      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0.5rem auto 2rem; line-height: 1.7;">
+      <p class="section-label">The Book</p>
+      <h2 class="section-title">These Stories (and 50 More) Are in the Book</h2>
+      <p class="section-subtitle" style="margin: 0.5rem auto 2rem;">
         <em>Estate Sale Tales</em> collects the best stories from two decades of clearing out homes — the funny, the bizarre, the heartwarming, and the ones that still keep us up at night.
       </p>
-      <a href="/book" class="btn btn-primary" style="background: white; color: var(--accent); box-shadow: 0 4px 16px rgba(0,0,0,0.2);">Get the Book on Amazon</a>
-      <div style="margin-top: 2rem;">
-        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem;">Or get a free story every week:</p>
+      <a href="/book" class="btn btn-primary">Get the Book on Amazon</a>
+      <div style="margin-top: 2.5rem;">
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">Or get a free story every week:</p>
         <form class="newsletter-form" action="#" method="post" style="justify-content: center;">
-          <input type="email" name="email" placeholder="Your email address" required style="border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.12); color: white;" />
-          <button type="submit" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);">Subscribe</button>
+          <input type="email" name="email" placeholder="Your email address" required />
+          <button type="submit">Subscribe</button>
         </form>
       </div>
     </div>
@@ -318,14 +318,8 @@ const featuredStories = featuredSlugs
     font-weight: 500;
   }
   .book-cta-section {
-    padding: 5rem 0;
-    background: linear-gradient(135deg, #3d2020 0%, var(--accent) 50%, #5a2828 100%);
-    color: white;
-  }
-  .book-cta-section .section-title::after {
-    background: rgba(255,255,255,0.3);
-  }
-  .book-cta-section .newsletter-form input::placeholder {
-    color: rgba(255,255,255,0.4);
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
   }
 </style>
