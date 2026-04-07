@@ -3,9 +3,20 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const allStories = await getCollection('stories');
-const featuredStories = allStories
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-  .slice(0, 4);
+
+// Hand-pick the most compelling stories for the homepage
+const featuredSlugs = [
+  'here-kitty-kitty-kitty',
+  'adventure-in-little-forest-hills',
+  'the-weedy-guys',
+  'snake-under-the-bed',
+  'at-the-salon',
+  'he-stood-his-ground',
+];
+const featuredStories = featuredSlugs
+  .map(slug => allStories.find(s => s.id === slug))
+  .filter(Boolean)
+  .slice(0, 6);
 ---
 
 <Layout>
@@ -33,9 +44,9 @@ const featuredStories = allStories
   <!-- Featured Stories -->
   <section class="section">
     <div class="container">
-      <p class="section-label">Latest Stories</p>
+      <p class="section-label">Sample Stories</p>
       <h2 class="section-title">Fresh from the Field</h2>
-      <p class="section-subtitle">Real encounters from real estate sales. You can't make this stuff up.</p>
+      <p class="section-subtitle">A taste of the tales. Real encounters from real estate sales — you can't make this stuff up.</p>
       <div class="card-grid" style="margin-top: 2rem;">
         {featuredStories.map((story) => (
           <a href={`/stories/${story.id}`} class="card">
