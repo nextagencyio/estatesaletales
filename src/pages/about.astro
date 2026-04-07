@@ -22,12 +22,11 @@ const personSchema = {
       <p class="section-label">About</p>
       <h1 class="section-title">The Story Behind the Stories</h1>
 
-      <div class="author-photo-wrapper">
-        <img src="/author-photo.jpg" alt="Susan Callicott, author of Estate Sale Tales" class="author-photo" />
-      </div>
-
       <div class="prose-content">
         <h2>Meet Susan Callicott</h2>
+        <div class="author-photo-wrapper">
+          <img src="/author-photo.jpg" alt="Susan Callicott, author of Estate Sale Tales" class="author-photo" />
+        </div>
         <p>
           Susan Callicott is the founder of <strong>Lucy & Ethel Estate Sales</strong>, based in the Dallas/Fort Worth, Texas area. For more than 20 years, she's been in the estate liquidation business — clearing out well over 1,000 homes and accumulating enough wild stories to fill a book. Which is exactly what she did.
         </p>
@@ -44,9 +43,9 @@ const personSchema = {
           The book isn't a how-to guide for running estate sales (though we have some of those in our <a href="/guides">Guides section</a>). It's a collection of true stories that capture the full spectrum of what it's like to walk into someone else's home and help sort through a lifetime of belongings.
         </p>
 
-        <div style="text-align: center; margin: 1.5rem 0;">
-          <a href="/book"><img src="/book-cover-thumb.jpg" alt="Estate Sale Tales" style="width: 120px; border-radius: 6px; box-shadow: 0 4px 12px rgba(44,36,32,0.1);" /></a>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;"><a href="/book">Get the book &rarr;</a></p>
+        <div class="book-inline">
+          <a href="/book"><img src="/book-cover-thumb.jpg" alt="Estate Sale Tales" class="book-inline-img" /></a>
+          <p class="book-inline-link"><a href="/book">Get the book &rarr;</a></p>
         </div>
 
         <h2>Contributors</h2>
@@ -101,12 +100,34 @@ const personSchema = {
   }
   .author-photo-wrapper {
     float: right;
-    margin: 0.25rem 0 1.5rem 2rem;
+    margin: 0 0 1.5rem 2.5rem;
+    shape-outside: margin-box;
   }
   .author-photo {
-    width: 180px;
+    width: 200px;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(44,36,32,0.1);
+    box-shadow: 0 4px 16px rgba(44,36,32,0.12);
+  }
+  .book-inline {
+    clear: both;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-warm);
+    border-radius: var(--radius-lg);
+    margin: 2rem 0;
+    border: 1px solid var(--border-light);
+  }
+  .book-inline-img {
+    width: 80px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(44,36,32,0.1);
+    flex-shrink: 0;
+  }
+  .book-inline-link {
+    font-size: 0.9rem;
+    font-family: var(--font-sans);
   }
   @media (max-width: 640px) {
     .author-photo-wrapper {
