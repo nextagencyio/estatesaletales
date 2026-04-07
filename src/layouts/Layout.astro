@@ -61,7 +61,13 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   <body>
     <nav class="nav">
       <div class="container">
-        <a href="/" class="nav-logo"><span class="nav-logo-arrow">&#10140;</span> Estate Sale Tales</a>
+        <a href="/" class="nav-logo">
+          <span class="nav-logo-sign">
+            <span class="nav-logo-sign-text">EST</span>
+            <span class="nav-logo-sign-post"></span>
+          </span>
+          Estate Sale Tales
+        </a>
         <ul class="nav-links">
           <li><a href="/stories">Stories</a></li>
           <li><a href="/guides">Guides</a></li>
@@ -196,15 +202,26 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
   }
   .nav .container { display: flex; align-items: center; justify-content: space-between; }
   .nav-logo {
-    display: flex; align-items: center; gap: 0.5rem;
+    display: flex; align-items: center; gap: 0.6rem;
     font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700;
     color: var(--text); text-decoration: none;
   }
   .nav-logo:hover { color: var(--accent); }
-  .nav-logo-arrow {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 28px; height: 28px; background: var(--accent); color: white;
-    border-radius: 4px; font-size: 0.85rem;
+  .nav-logo-sign {
+    display: flex; flex-direction: column; align-items: center; position: relative;
+  }
+  .nav-logo-sign-text {
+    display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 22px;
+    background: var(--accent); color: white;
+    font-family: var(--font-sans); font-size: 0.55rem; font-weight: 800;
+    letter-spacing: 0.08em;
+    border-radius: 2px;
+  }
+  .nav-logo-sign-post {
+    width: 3px; height: 10px;
+    background: var(--text-muted);
+    border-radius: 0 0 1px 1px;
   }
   .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
   .nav-links a {
